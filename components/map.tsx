@@ -21,12 +21,14 @@ const Map = ({ records }: { records:  Record[]}) => {
     <MapContainer 
       center={[33.39, -111.870890]} 
       zoom={17} 
-      scrollWheelZoom={false} 
+      scrollWheelZoom={true} 
       style={{height: "100vh", width: "100%"}}
     >
       <TileLayer 
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        maxNativeZoom={19}
+        maxZoom={20}
       />
       {map(({ id, fields }) => <Marker key={id} position={[fields.Latitude, fields.Longitude]}>
         <Popup>
