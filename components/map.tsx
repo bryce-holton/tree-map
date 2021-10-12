@@ -49,8 +49,8 @@ const Map = ({ records }: { records: Record[] }) => {
       />
       {map(({ id, fields }) => <Marker key={id} position={[fields.Latitude, fields.Longitude]}>
         <Popup>
-          <h1>{fields.['Common Name']}</h1>
-          <p><b><i>{fields.Genus} {fields.Species}</i> {fields.['Infraspecific Type 1']} <i>{fields.['Infraspecific Name 1']}</i> {fields.Cultivar} </b></p>
+          <h1>{fields['Common Name']}</h1>
+          <p><b><i>{fields.Genus} {fields.Species}</i> {fields['Infraspecific Type 1']} <i>{fields['Infraspecific Name 1']}</i> {fields.Cultivar} </b></p>
           <hr></hr>
           <table>
             <tbody>
@@ -61,7 +61,7 @@ const Map = ({ records }: { records: Record[] }) => {
               <tr>
                 <td><b>Accession No.:</b></td><td>{fields.Accession}</td></tr></tbody></table>
           <a target="_blank" href={fields['Photo 1 URL']} rel="noreferrer">
-            <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields.['Common Name']}/>
+            <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']}/>
           </a>
           <p>Click image to view full size</p>
         </Popup>
