@@ -61,9 +61,9 @@ const Map = ({ records }: { records: Record[] }) => {
               <tr>
                 <td><b>Accession No.:</b></td><td>{fields.Accession}</td></tr></tbody></table>
           <a target="_blank" href={fields['Photo 1 URL']} rel="noreferrer">
-            <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']}/>
+           {fields['Photo 1 URL'] && <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']}/>}
           </a>
-          <p>Click image to view full size</p>
+          {fields['Photo 1 URL'] && <p style={{margin: '0'}}>Click image to view full size</p>}
         </Popup>
         <Tooltip direction="bottom" offset={[-14, 30]} opacity={0.7}>{fields.Accession}</Tooltip>
       </Marker>, records)}
