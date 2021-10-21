@@ -1,9 +1,22 @@
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import { map } from 'ramda';
 import Image from 'next/image';
+import * as L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
+
+// this should replace the blue icon with a green icon, but it just shows a blank box
+// export const greenIcon = new L.Icon({
+//   iconUrl: require("../public/marker-icon-green.png"),
+//   iconRetinaUrl: require("../assets/pointerIcon.svg"), need to figure out what this is for
+//   iconAnchor: [5, 55],
+//   popupAnchor: [10, -44],
+//   iconSize: [25, 55],
+//   shadowUrl: "../assets/marker-shadow.png", need to add a shadow image
+//   shadowSize: [68, 95],
+//   shadowAnchor: [20, 92]
+// });
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 interface Fields {
@@ -27,9 +40,9 @@ interface Record {
 }
 
 //set maximum boundaries
-// var southWest = L.latLng(33.3864, -111.87494),
-    // northEast = L.latLng(33.3941, -111.8630),
-    // bounds = L.latLngBounds(southWest, northEast);
+//const southWest = L.latLng(33.3864, -111.8749),
+  //northEast = L.latLng(33.3941, -111.8630),
+  //bounds = L.latLngBounds(southWest, northEast)
 
 const Map = ({ records }: { records: Record[] }) => {
   return (
@@ -45,7 +58,7 @@ const Map = ({ records }: { records: Record[] }) => {
         maxNativeZoom={19}
         maxZoom={21}
         minZoom={15}
-        // maxBounds: bounds,
+        //maxBounds={bounds}
       />
       {map(({ id, fields }) => <Marker key={id} position={[fields.Latitude, fields.Longitude]}>
         <Popup>
@@ -61,9 +74,9 @@ const Map = ({ records }: { records: Record[] }) => {
               <tr>
                 <td><b>Accession No.:</b></td><td>{fields.Accession}</td></tr></tbody></table>
           <a target="_blank" href={fields['Photo 1 URL']} rel="noreferrer">
-           {fields['Photo 1 URL'] && <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']}/>}
+            {fields['Photo 1 URL'] && <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']} />}
           </a>
-          {fields['Photo 1 URL'] && <p style={{margin: '0'}}>Click image to view full size</p>}
+          {fields['Photo 1 URL'] && <p style={{ margin: '0' }}>Click image to view full size</p>}
         </Popup>
         <Tooltip direction="bottom" offset={[-14, 30]} opacity={0.7}>{fields.Accession}</Tooltip>
       </Marker>, records)}
