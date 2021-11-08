@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import type { NextPage, GetStaticProps } from 'next';
-import { getRecords } from '../airtable/accession';
+import { getRecords } from '../api/accession';
 
 const MapComponent = dynamic(
   () => import('../components/map'),

@@ -15,5 +15,5 @@
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "airtable/accession.js"]
+  "exclude": ["node_modules", "api/accession.js"]
 }
