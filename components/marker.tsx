@@ -36,9 +36,9 @@ const PopupTable = (fields: Fields) => {
   );
 }
 
-export const MapMarker = ({ id, fields }: Record) => {
+export const MapMarker = ({ fields }: Record) => {
   return (
-    <Marker key={id} position={[fields.Latitude, fields.Longitude]}>
+    <Marker position={[fields.Latitude, fields.Longitude]}>
       <Popup>
         <PopupHeader {...fields} />
         <hr></hr>

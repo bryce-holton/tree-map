@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import type { NextPage, GetStaticProps } from 'next';
-import { getRecords } from '../api/accession';
+import { getRecords } from '../api';
 
 const MapComponent = dynamic(
   () => import('../components/map'),

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { map } from 'ramda';
 import { MapMarker } from './marker';
@@ -10,15 +9,9 @@ import 'leaflet-defaulticon-compatibility';
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 const Map = ({ records }: { records: Record[] }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const searchResults = records.filter(rec => {
-    //"Common Name", "Taxon Name", "Accession"
-    return true;
-  });
-
   return (
     <>
-      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <Search records={records} />
       <MapContainer
         center={[33.39, -111.870890]}
         zoom={16}
@@ -32,7 +25,7 @@ const Map = ({ records }: { records: Record[] }) => {
           maxZoom={21}
           minZoom={15}
         />
-        {map((r) => <MapMarker {...r}/>, records)}
+        {map((r) => <MapMarker key={r.id} {...r}/>, records)}
       </MapContainer>
     </>
   )
