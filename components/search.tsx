@@ -1,26 +1,19 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import { useState } from 'react';
-import { filter, prop, startsWith, head } from 'ramda';
 import { Record } from '../shared/types';
+import { processSearch } from '../shared/search';
 
-export const Search = ({ records }: { records: Record[] }) => {
+interface SearchType {
+  records: Record[];
+  setSearchResults: Function;
+}
+
+export const Search = ({ records, setSearchResults }: SearchType) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const searchFn = startsWith(searchQuery);
-  const searchResults = filter(rec => {
-    // "Common Name", "Taxon Name", "Accession"
-    const fields = prop('fields')(rec);
-    const commonName = head(prop('Common Name')(fields));
-    const commonNameMatch = searchFn(commonName);
-    const taxonName = head(prop('Taxon Name')(fields));
-    const taxonNameMatch = searchFn(taxonName);
-    const accessionName = prop('Accession')(fields);
-    const accessionMatch = searchFn(accessionName);
+  const {slicedKeys, formattedResults } = processSearch(searchQuery, records);
 
-    return commonNameMatch || taxonNameMatch || accessionMatch;
-  }, records);
-
-  // console.log(searchResults);
   return (
     <Box
       component="form"
@@ -30,12 +23,15 @@ export const Search = ({ records }: { records: Record[] }) => {
       noValidate
       autoComplete="off"
     >
-      <TextField 
-        id="outlined-basic" 
-        label="Search" 
-        variant="outlined" 
-        value={searchQuery} 
-        onChange={e => setSearchQuery(e.target.value)} 
+      <Autocomplete
+        options={slicedKeys}
+        onChange={(e, v) => setSearchResults(v ? formattedResults[v] : [])}
+        renderInput={params => <TextField 
+          {...params} 
+          value={searchQuery} 
+          onChange={e => setSearchQuery(e.target.value)} 
+          label="Search" 
+        />}
       />
     </Box>
   );
