@@ -1,0 +1,8 @@
+.scientificName {
+	margin-top: 0px !important;
+}
+
+.image {
+	display: flex;
+	justify-content: center;
+}

@@ -4,10 +4,12 @@ import { map, isEmpty, filter, contains } from 'ramda';
 import { MapMarker } from './marker';
 import { Record } from '../shared/types';
 import { Search } from './search';
+import Image from 'next/image';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 import LocateButton from '../components/locateButton';
+import classes from './map.module.css';
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 const Map = ({ records }: { records: Record[] }) => {
@@ -18,6 +20,15 @@ const Map = ({ records }: { records: Record[] }) => {
 
 	return (
 		<>
+			<div className={classes.imageWrapper}>
+				<Image
+					src='https://user-images.githubusercontent.com/91229709/136716846-91170c09-0402-4dd7-9e4c-80dc5ff1cdfd.png'
+					alt='mesa community college logo'
+					width={700}
+					height={136}
+				/>
+			</div>
+
 			<Search records={records} setSearchResults={setSearchResults} />
 			<MapContainer
 				center={[33.39, -111.87089]}
