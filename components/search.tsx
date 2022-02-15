@@ -19,6 +19,10 @@ export const Search = ({ records, setSearchResults }: SearchType) => {
       component="form"
       sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
+          position: 'absolute',
+          zIndex: '1000',
+          left: '5%',
+          background: 'white',
       }}
       noValidate
       autoComplete="off"
