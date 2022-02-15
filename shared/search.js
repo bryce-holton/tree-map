@@ -1,7 +1,7 @@
-import { map, filter, prop, startsWith, head, groupBy, pluck, slice, keys, toLower, identity } from 'ramda';
+import { map, filter, prop, head, groupBy, pluck, slice, keys, toLower, identity, includes } from 'ramda';
 
 export const processSearch = (searchQuery, records) => {
-    const searchFn = startsWith(toLower(searchQuery));
+    const searchFn = includes(toLower(searchQuery));
     const searchResults = map(rec => {
     // "Common Name", "Taxon Name", "Accession"
     const id = prop('id')(rec);
@@ -14,7 +14,7 @@ export const processSearch = (searchQuery, records) => {
         label: commonName,
         }
     }
-    const taxonName = head(prop('Taxon Name')(fields));
+    const taxonName = prop('Taxon Name')(fields);
     const taxonNameMatch = searchFn(toLower(taxonName));
     if (taxonNameMatch) {
         return {
