@@ -13,45 +13,36 @@ import classes from './map.module.css';
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 const Map = ({ records }: { records: Record[] }) => {
-	const [searchResults, setSearchResults] = useState([]);
-	const markers = isEmpty(searchResults)
-		? records
-		: filter((rec) => contains(rec.id, searchResults), records);
+  const [searchResults, setSearchResults] = useState([]);
+  const markers = isEmpty(searchResults)
+    ? records
+    : filter((rec) => contains(rec.id, searchResults), records);
 
-	return (
-		<>
-			<div className={classes.imageWrapper}>
-				<Image
-					src='https://user-images.githubusercontent.com/91229709/136716846-91170c09-0402-4dd7-9e4c-80dc5ff1cdfd.png'
-					alt='mesa community college logo'
-					width={700}
-					height={136}
-				/>
-			</div>
-
-			<Search records={records} setSearchResults={setSearchResults} />
-			<MapContainer
-				center={[33.39, -111.87089]}
-				zoom={16}
-				scrollWheelZoom={true}
-				style={{ height: '100vh', width: '100%' }}>
-				<TileLayer
-					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-					maxNativeZoom={19}
-					maxZoom={21}
-					minZoom={15}
-				/>
-				{map(
-					(r) => (
-						<MapMarker key={r.id} {...r} />
-					),
-					markers
-				)}
-				<LocateButton />
-			</MapContainer>
-		</>
-	);
+  return (
+    <>
+      <Search records={records} setSearchResults={setSearchResults} />
+      <MapContainer
+        center={[33.39, -111.87089]}
+        zoom={16}
+        scrollWheelZoom={true}
+        style={{ height: '100vh', width: '100%' }}>
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          maxNativeZoom={19}
+          maxZoom={21}
+          minZoom={15}
+        />
+        {map(
+          (r) => (
+            <MapMarker key={r.id} {...r} />
+          ),
+          markers
+        )}
+        <LocateButton />
+      </MapContainer>
+    </>
+  );
 };
 
 export default Map;

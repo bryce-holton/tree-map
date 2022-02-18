@@ -1,6 +1,6 @@
 import { 
-    map, groupBy, prop, head, set, composeP, lensPath,
-    compose, identity, flip, converge, append, path
+  map, groupBy, prop, head, set, composeP, lensPath,
+  compose, identity, flip, converge, append, path
 } from 'ramda';
 import { pickIdAndFieldsMap, getData } from './common';
 
@@ -24,15 +24,15 @@ const genusLensPath = lensPath(['fields', 'Genus']);
  * @returns {function(function): function}
  */
  export const setGenusName = composeP(
-    map,
-    converge(set(genusLensPath)),
-    append(identity),
-    flip(append)([]),
-    fn => compose(fn, genusPath),
-    flip(prop),
-    map(genusPath),
-    map(head),
-    groupBy(prop('id')),
-    pickIdAndFieldsMap,
-    getData('Genus & Family', GENUS_PARAMS)
+  map,
+  converge(set(genusLensPath)),
+  append(identity),
+  flip(append)([]),
+  fn => compose(fn, genusPath),
+  flip(prop),
+  map(genusPath),
+  map(head),
+  groupBy(prop('id')),
+  pickIdAndFieldsMap,
+  getData('Genus & Family', GENUS_PARAMS)
 );
