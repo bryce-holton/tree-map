@@ -9,18 +9,32 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 import LocateButton from '../components/locateButton';
-import classes from './map.module.css';
+import MCCLogo from '../public/mcc-logo.png';
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 const Map = ({ records }: { records: Record[] }) => {
   const [searchResults, setSearchResults] = useState([]);
   const markers = isEmpty(searchResults)
     ? records
-    : filter((rec) => contains(rec.id, searchResults), records);
+    : filter(
+        (rec) => contains(rec.id, searchResults),
+        records
+      );
 
   return (
     <>
-      <Search records={records} setSearchResults={setSearchResults} />
+      <div style={{ margin: '.5rem' }}>
+        <Image
+          src={MCCLogo}
+          width={680}
+          height={133}
+          alt='MCC logo'
+        />
+      </div>
+      <Search
+        records={records}
+        setSearchResults={setSearchResults}
+      />
       <MapContainer
         center={[33.39, -111.87089]}
         zoom={16}
