@@ -1,13 +1,12 @@
 import { Marker, Popup, Tooltip } from 'react-leaflet';
 import { Record, Fields } from '../shared/types';
 import Image from 'next/image';
-import classes from './marker.module.css';
 
 const PopupHeader = (fields: Fields) => {
   return (
     <>
       <h1>{fields['Common Name']}</h1>
-      <p className={classes.scientificName}>
+      <p style={{ marginTop: '0px !important' }}>
         <b>
           <i>
             {fields.Genus} {fields.Species}
@@ -60,13 +59,16 @@ export const MapMarker = ({ fields }: Record) => {
           href={fields['Photo 1 URL']}
           rel='noreferrer'>
           {fields['Photo 1 URL'] && (
-            <div className={classes.image}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}>
               <Image
                 src={fields['Photo 1 URL']}
                 width={200}
                 height={200}
                 alt={fields['Common Name']}
-                className={classes.image}
               />
             </div>
           )}
