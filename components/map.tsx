@@ -9,7 +9,6 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 import LocateButton from '../components/locateButton';
-import MCCLogo from '../public/mcc-logo.png';
 
 // Specify Airtable fields to pull data from (same as list in pages/map.tsx)
 const Map = ({ records }: { records: Record[] }) => {
@@ -23,14 +22,6 @@ const Map = ({ records }: { records: Record[] }) => {
 
   return (
     <>
-      <div style={{ margin: '.5rem' }}>
-        <Image
-          src={MCCLogo}
-          width={680}
-          height={133}
-          alt='MCC logo'
-        />
-      </div>
       <Search
         records={records}
         setSearchResults={setSearchResults}
