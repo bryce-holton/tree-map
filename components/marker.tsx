@@ -1,5 +1,6 @@
 import { Marker, Popup, Tooltip } from 'react-leaflet';
 import { Record, Fields } from '../shared/types';
+import * as L from 'leaflet';
 import Image from 'next/image';
 
 const PopupHeader = (fields: Fields) => {
@@ -47,9 +48,16 @@ const PopupTable = (fields: Fields) => {
   );
 };
 
+const greenIcon = L.icon({
+  iconUrl: '/marker-icon-green.png',
+  iconSize: [8, 10],
+});
+
 export const MapMarker = ({ fields }: Record) => {
   return (
-    <Marker position={[fields.Latitude, fields.Longitude]}>
+    <Marker
+      position={[fields.Latitude, fields.Longitude]}
+      icon={greenIcon}>
       <Popup>
         <PopupHeader {...fields} />
         <hr></hr>

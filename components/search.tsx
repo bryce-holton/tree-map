@@ -36,7 +36,7 @@ export const Search = ({
       }}
       noValidate
       autoComplete='off'>
-      <Image src={MCCLogo} alt='MCC logo' />
+      {/* <Image src={MCCLogo} alt='MCC logo' /> */}
       <Autocomplete
         options={slicedKeys}
         onChange={(e, v) =>
