@@ -4,6 +4,7 @@ import { map, isEmpty, filter, contains } from 'ramda';
 import { MapMarker } from './marker';
 import { Record } from '../shared/types';
 import { Search } from './search';
+import Image from 'next/image';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
@@ -14,11 +15,17 @@ const Map = ({ records }: { records: Record[] }) => {
   const [searchResults, setSearchResults] = useState([]);
   const markers = isEmpty(searchResults)
     ? records
-    : filter((rec) => contains(rec.id, searchResults), records);
+    : filter(
+        (rec) => contains(rec.id, searchResults),
+        records
+      );
 
   return (
     <>
-      <Search records={records} setSearchResults={setSearchResults} />
+      <Search
+        records={records}
+        setSearchResults={setSearchResults}
+      />
       <MapContainer
         center={[33.39, -111.87089]}
         zoom={16}

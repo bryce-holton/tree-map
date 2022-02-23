@@ -6,35 +6,46 @@ const PopupHeader = (fields: Fields) => {
   return (
     <>
       <h1>{fields['Common Name']}</h1>
-      <p>
+      <p style={{ marginTop: '0px !important' }}>
         <b>
-        <i>{fields.Genus} {fields.Species}</i> 
-        {fields['Infraspecific Type 1']} 
-        <i>{fields['Infraspecific Name 1']}</i> 
-        {fields.Cultivar} 
+          <i>
+            {fields.Genus} {fields.Species}
+          </i>
+          {fields['Infraspecific Type 1']}
+          <i>{fields['Infraspecific Name 1']}</i>
+          {fields.Cultivar}
         </b>
       </p>
     </>
   );
-}
+};
 
 const PopupTable = (fields: Fields) => {
   return (
     <table>
       <tbody>
         <tr>
-          <td><b>Family:</b></td><td>{fields.Family}</td>
+          <td>
+            <b>Family:</b>
+          </td>
+          <td>{fields.Family}</td>
         </tr>
         <tr>
-          <td><b>Origin:</b></td><td>{fields.Origin}</td>
+          <td>
+            <b>Origin:</b>
+          </td>
+          <td>{fields.Origin}</td>
         </tr>
         <tr>
-          <td><b>Accession No.:</b></td><td>{fields.Accession}</td>
+          <td>
+            <b>Accession No.:</b>
+          </td>
+          <td>{fields.Accession}</td>
         </tr>
       </tbody>
     </table>
   );
-}
+};
 
 export const MapMarker = ({ fields }: Record) => {
   return (
@@ -43,12 +54,37 @@ export const MapMarker = ({ fields }: Record) => {
         <PopupHeader {...fields} />
         <hr></hr>
         <PopupTable {...fields} />
-        <a target="_blank" href={fields['Photo 1 URL']} rel="noreferrer">
-          {fields['Photo 1 URL'] && <Image src={fields['Photo 1 URL']} width={200} height={200} alt={fields['Common Name']} />}
+        <a
+          target='_blank'
+          href={fields['Photo 1 URL']}
+          rel='noreferrer'>
+          {fields['Photo 1 URL'] && (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}>
+              <Image
+                src={fields['Photo 1 URL']}
+                width={200}
+                height={200}
+                alt={fields['Common Name']}
+              />
+            </div>
+          )}
         </a>
-        {fields['Photo 1 URL'] && <p style={{ margin: '0' }}>Click image to view full size</p>}
+        {fields['Photo 1 URL'] && (
+          <p style={{ margin: '0' }}>
+            Click image to view full size
+          </p>
+        )}
       </Popup>
-      <Tooltip direction="bottom" offset={[-14, 30]} opacity={0.7}>{fields.Accession}</Tooltip>
+      <Tooltip
+        direction='bottom'
+        offset={[-14, 30]}
+        opacity={0.7}>
+        {fields.Accession}
+      </Tooltip>
     </Marker>
   );
-}
+};
