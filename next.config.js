@@ -4,4 +4,4 @@ module.exports = {
 	images: {
 		domains: ['dl.airtable.com', 'user-images.githubusercontent.com'],
 	},
-};
+}; 
