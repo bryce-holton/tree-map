@@ -50,7 +50,7 @@ const PopupTable = (fields: Fields) => {
 
 const greenIcon = L.icon({
   iconUrl: '/marker-icon-green.png',
-  iconSize: [8, 10],
+  iconSize: [10, 12],
 });
 
 export const MapMarker = ({ fields }: Record) => {
