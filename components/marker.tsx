@@ -48,11 +48,8 @@ const PopupTable = (fields: Fields) => {
   );
 };
 
-const markerIconUrl =
-  'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|2ecc71&chf=a,s,ee00FFFF';
-
 const greenIcon = L.icon({
-  iconUrl: markerIconUrl,
+  iconUrl: '/marker-icon-green.png',
   iconSize: [8, 10],
 });
 
