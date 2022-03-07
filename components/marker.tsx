@@ -89,7 +89,7 @@ export const MapMarker = ({ fields }: Record) => {
       </Popup>
       <Tooltip
         direction='bottom'
-        offset={[0, 10]}
+        offset={[0, 16]}
         opacity={0.7}>
         {fields.Accession}
       </Tooltip>
