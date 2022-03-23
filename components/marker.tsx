@@ -10,11 +10,14 @@ const PopupHeader = (fields: Fields) => {
       <p style={{ marginTop: '0px !important' }}>
         <b>
           <i>
-            {fields.Genus} {fields.Species} 
+            {fields.Genus}&nbsp;
+            {fields.Species}&nbsp;
           </i>
-          {fields['Infraspecific Type 1']} 
-          <i>{fields['Infraspecific Name 1']} </i>
-          {fields.Cultivar}
+            {fields['Infraspecific Type 1']}&nbsp;
+          <i>
+            {fields['Infraspecific Name 1']}&nbsp;
+          </i>
+            {fields.Cultivar}
         </b>
       </p>
     </>
