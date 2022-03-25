@@ -28,11 +28,11 @@ export const Search = ({
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
         position: 'absolute',
-        zIndex: '1000',
+        zIndex: '-1',
         left: '60px',
-        marginTop: '.5rem',
+        marginTop: '.3rem',
         background: 'white',
-        paddingTop: '.5rem',
+        paddingTop: '.3rem',
       }}
       noValidate
       autoComplete='off'>
