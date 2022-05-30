@@ -1,6 +1,6 @@
 import Airtable from 'airtable';
 import { 
-    composeP, compose, converge, map, unapply, prop, groupBy, head, lensPath, over, flip, trim 
+    composeP, compose, converge, map, unapply, prop, groupBy, head, lensPath, over, flip, trim, reject 
 } from 'ramda';
 import { cleanAccessionRecords } from './accession';
 import { setGenusName } from './genus';
@@ -18,12 +18,13 @@ const processRecords = ([genusFn, accessionRecs, taxaRecs]) => {
     return {
       id,
       genus,
-    }
+    };
   }, taxaWithGenus);
   const groupedTaxa = groupBy(prop('id'), taxaBuiltGenus);
   const finalTaxa = map(compose(trim, prop('genus'), head), groupedTaxa);
   const findTaxaFn = flip(prop)(finalTaxa);
-  const accessionWithGenusAndTaxa = map(over(lensPath(['fields', 'Taxon Name']), compose(findTaxaFn, head)), accessionWithGenus);
+  const cleanAccessionWithGenus = reject((r) => r.fields['Taxon Name'] === undefined, accessionWithGenus)
+  const accessionWithGenusAndTaxa = map(over(lensPath(['fields', 'Taxon Name']), compose(findTaxaFn, head)), cleanAccessionWithGenus);
 
   return accessionWithGenusAndTaxa;
 }
